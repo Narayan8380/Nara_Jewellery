@@ -26,7 +26,7 @@ python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
-Open http://127.0.0.1:8000 and add products at /admin/.
+Open http://127.0.0.1:8000/ and add products at /admin/.
 
 ## Project Structure
 - `products/` – products, categories, visit requests, gold rate service
