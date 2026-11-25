@@ -41,7 +41,7 @@ DEBUG = not IS_PRODUCTION
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 if IS_PRODUCTION:
-    ALLOWED_HOSTS.append('narayan8380.pythonanywhere.com')
+    ALLOWED_HOSTS.append('narmada.pythonanywhere.com')
 
 
 
@@ -142,12 +142,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # ── Static ──
-import os
+
 STATIC_URL  = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-import os
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -171,4 +171,4 @@ if IS_PRODUCTION:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_SECONDS = 3600
-    CSRF_TRUSTED_ORIGINS = ['https://narayan8380.pythonanywhere.com']
+    CSRF_TRUSTED_ORIGINS = ['https://narmada.pythonanywhere.com']
