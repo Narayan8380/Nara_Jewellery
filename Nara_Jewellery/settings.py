@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,29 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rvi$&a*cxne+jk^*bu5)^yk6w68uz$wxo$ak5)q9w(9o7%()--'
+#    SECRET_KEY = 'django-insecure-rvi$&a*cxne+jk^*bu5)^yk6w68uz$wxo$ak5)q9w(9o7%()--'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#    DEBUG = True
 
-ALLOWED_HOSTS = []
+#   ALLOWED_HOSTS = []
+
+# On the server we set DJANGO_ENV=production. On your laptop it is not set.
+IS_PRODUCTION = os.environ.get('DJANGO_ENV') == 'production'
+
+# Local: uses the dev key. Server: key comes from the environment.
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-local-dev-key-only'
+)
+
+DEBUG = not IS_PRODUCTION
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+if IS_PRODUCTION:
+    ALLOWED_HOSTS.append('narayan8380.pythonanywhere.com')
+
+
 
 
 # Application definition
@@ -146,3 +164,11 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR:   'danger',
 }
+
+# ---------- Production security (only active on the server) ----------
+if IS_PRODUCTION:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 3600
+    CSRF_TRUSTED_ORIGINS = ['https://narayan8380.pythonanywhere.com']
