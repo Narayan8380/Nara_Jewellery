@@ -34,5 +34,9 @@ Project Structure
 - `wishlist/` – wishlist model and AJAX toggle
 - `templates/`, `static/`, `media/` – UI, CSS and product images
 
+Developer
 
+Narayanamma Bojja
+
+Project Type: Individual Project
 
